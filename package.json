@@ -16,6 +16,8 @@
 		"publish": true
 	},
 	"devDependencies": {
+		"@types/node": "^25.0.2",
+		"drizzle-kit": "^0.31.8",
 		"typescript": "5.9.3",
 		"wrangler": "4.51.0"
 	},
@@ -24,8 +26,15 @@
 		"cf-typegen": "wrangler types",
 		"check": "tsc && wrangler deploy --dry-run",
 		"deploy": "wrangler deploy",
-		"dev": "pnpm seedLocalD1 && wrangler dev",
+		"db:generate": "npx drizzle-kit generate",
+		"db:push": "npx drizzle-kit push",
+		"db:pull": "npx drizzle-kit pull",
+		"dev": "wrangler dev",
 		"predeploy": "wrangler d1 migrations apply DB --remote",
 		"seedLocalD1": "wrangler d1 migrations apply DB --local"
+	},
+	"dependencies": {
+		"dotenv": "^17.2.3",
+		"drizzle-orm": "^0.45.1"
 	}
 }
